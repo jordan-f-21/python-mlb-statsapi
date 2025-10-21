@@ -83,6 +83,8 @@ class SimpleFieldingSplit:
     wildpitches: Optional[int] = None
     throwingerrors: Optional[int] = None
     pickoffs: Optional[int] = None
+    age: Optional[int] = None
+    caughtstealingpercentage: Optional[str] = None
 
     def __repr__(self) -> str:
         kws = [f'{key}={value}' for key, value in self.__dict__.items() if value is not None]
