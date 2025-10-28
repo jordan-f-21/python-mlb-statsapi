@@ -1,13 +1,20 @@
 import mlbstatsapi
 from pprint import pprint
+from flask import Flask, render_template, request, Response
 
 mlb = mlbstatsapi.Mlb()
 
-def getId(name):
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+def getID(name):
     return mlb.get_people_id(name)[0]
 
 #    PLAYER ID AND PLAYER OBJECT
-mikeTroutID = mlb.get_people_id('Mike Trout')[0]
+mikeTroutID = getID("Mike Trout")
 calRaleighID = mlb.get_people_id('Cal Raleigh')[0]
 claytonKershawID = mlb.get_people_id('Clayton Kershaw')[0]
 #person_object = mlb.get_person(mikeTroutID)
@@ -27,21 +34,19 @@ for player in team_roster:
 """
 
 #     PLAYER STATS OBJECT
+
 """
 stats = ['season', 'career']
 groups = ['hitting', 'pitching', 'fielding', 'catching']
 
-player_stats = mlb.get_player_stats(calRaleighID, stats, groups)
+player_stats = mlb.get_player_stats(getID("Mike Trout"), stats, groups)
 hitting_stats = player_stats["hitting"]["season"]
 split = hitting_stats.splits[0]
 for key, value in vars(split.stat).items():
     print(key + "  =  " + str(value))
 
-hitting_stats_2 = player_stats["catching"]["career"]
-split = hitting_stats_2.splits[0]
-for key, value in vars(split.stat).items():
-    print(key + "  =  " + str(value))
 """
+
 
 #      GAMEPACE OBJECT GIVING GAME STATISTICS
 """
@@ -61,9 +66,15 @@ season = mlb.get_season("2023")
 print(season)
 """
 
+#   LEAGUE STANDINGS
+"""
 aL = mlb.get_league_id("National League")
 nL = mlb.get_league_id("American League")
 aL_Stadings = mlb.get_standings(aL,"2023")
 nL_Stadings = mlb.get_standings(nL,"2023")
 print(aL_Stadings)
 print(nL_Stadings)
+"""
+
+if __name__ == '__main__':
+    app.run(debug=True)
