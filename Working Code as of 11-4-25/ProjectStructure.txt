@@ -1,0 +1,9 @@
+mlbsite/
+├─ app.py
+├─ requirements.txt
+├─ templates/
+│  ├─ base.html
+│  ├─ index.html
+│  └─ player.html
+├─ static/
+   └─ styles.css
