@@ -1,27 +1,57 @@
-{% extends "base.html" %}
-{% block content %}
-<section class="card">
-  <h2>Search Player</h2>
-  <form method="post" action="{{ url_for('player_lookup') }}">
-    <div class="row">
-      <label for="name">Player name</label>
-      <input id="name" name="name" placeholder="e.g., Mike Trout" required>
-    </div>
+{% extends "base.html" %} {% block content %}
+<div class="cards-row">
+  <section class="card">
+    <h2>Search Player</h2>
+    <form method="post" action="{{ url_for('player_lookup') }}">
+      <div class="row">
+        <label for="name">Player name</label>
+        <input id="name" name="name" placeholder="e.g., Mike Trout" required />
+      </div>
 
-    <fieldset class="row">
-      <legend>Stat scope</legend>
-      <label><input type="radio" name="mode" value="career" checked> Career</label>
-      <label><input type="radio" name="mode" value="season"> Single season</label>
-    </fieldset>
+      <fieldset class="row">
+        <legend>Stat scope</legend>
+        <label
+          ><input type="radio" name="mode" value="career" checked />
+          Career</label
+        >
+        <label
+          ><input type="radio" name="mode" value="season" /> Single
+          season</label
+        >
+      </fieldset>
 
-    <div class="row">
-      <label for="year">Season (optional; required if “Single season”)</label>
-      <input id="year" name="year" placeholder="e.g., 2022">
-    </div>
+      <div class="row">
+        <label for="year">Season (optional; required if “Single season”)</label>
+        <input id="year" name="year" placeholder="e.g., 2022" />
+      </div>
 
-    <button type="submit">View stats</button>
-  </form>
+      <button type="submit">View stats</button>
+    </form>
 
-  <p class="hint">Tip: If multiple players share a similar name, try adding a first & last name (or Jr./Sr.) for a better match.</p>
-</section>
+    <p class="hint">
+      Tip: If multiple players share a similar name, try adding a first & last
+      name (or Jr./Sr.) for a better match.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Search Team</h2>
+    <form method="post" action="{{ url_for('player_lookup') }}">
+      <!--change api call here for team-->
+      <div class="row">
+        <label for="name">Team name</label>
+        <input id="name" name="name" placeholder="e.g., Giants" required />
+      </div>
+
+      <div class="row">
+        <label for="year">Season (optional; required if “Single season”)</label>
+        <input id="year" name="year" placeholder="e.g., 2022" />
+      </div>
+
+      <button type="submit">View Roster</button>
+    </form>
+
+    <p class="hint"></p>
+  </section>
+</div>
 {% endblock %}
