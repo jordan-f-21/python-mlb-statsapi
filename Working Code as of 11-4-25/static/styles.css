@@ -97,8 +97,13 @@ td {
   align-items: flex-start;
   flex-wrap: wrap; /* allows stacking on small screens */
 }
-
 .card {
   flex: 1;
   min-width: 300px; /* prevents cards from becoming too skinny */
+}
+.player-row {
+  display: flex;
+  gap: 2rem; /* space between the two cards */
+  align-items: flex-start;
+  flex-wrap: wrap; /* allows stacking on small screens */
 }
