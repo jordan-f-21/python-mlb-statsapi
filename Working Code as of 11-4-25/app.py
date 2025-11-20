@@ -25,6 +25,7 @@ app.secret_key = "change-me"  # replace in production
 # -----------------------------
 # Helpers: player resolution
 # -----------------------------
+# ===== Model (Adapter + Cache) =====
 def resolve_player_id(name: str) -> Optional[int]:
     """Return a single player ID for a given name (first match)."""
     # Prefer mlbstatsapi if available
@@ -77,6 +78,7 @@ def get_display_name(player_id: int) -> str:
 # -----------------------------
 # Stats fetchers (primary + fallback)
 # -----------------------------
+# ===== Service (Application logic) =====
 def _get_hitting_stats_mlbstatsapi(player_id: int, season: Optional[int]) -> List[Dict[str, Any]]:
     """Primary path using python-mlb-statsapi. May raise exceptions if schema changes."""
     if not (mlbstatsapi and mlb):
@@ -211,6 +213,7 @@ def get_hitting_stats(player_id: int, season: Optional[int]) -> List[Dict[str, A
 # -----------------------------
 # Flask routes
 # -----------------------------
+# ===== Controller (Routes) =====
 @app.get("/")
 def index():
     return render_template("index.html")
